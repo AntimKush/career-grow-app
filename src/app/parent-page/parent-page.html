@@ -1,0 +1,12 @@
+<p>parent-page works!</p>
+<table>
+@for (emp of employees; track $index) {
+        <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.fatherName }}</td>
+            <td>{{ emp.dob }}</td>
+            <td><app-child [id]="emp.id"></app-child></td>
+        </tr>
+}
+</table>
