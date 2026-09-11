@@ -1,7 +1,17 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
+import { Layout } from './shared/layout/layout';
+import { Career } from './pages/career/career';
 
 export const routes: Routes = [
     {
-        path: 'home', component: Home
-    }];
+
+        path: '',component: Layout, children: 
+        [
+
+            {path: 'home', component: Home},
+            {path: 'career', component: Career},
+            {path: '', redirectTo: 'home', pathMatch: 'full'}
+        ]
+    }
+];

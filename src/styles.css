@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Core CSS variables used by the layout */
+:root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 80px;
+  --header-height: 70px;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --primary-color: #0f172a;
+  --accent-color: #2563eb;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
