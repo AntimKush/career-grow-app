@@ -1,1 +1,95 @@
-<p>apply works!</p>
+<div class="page-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Apply for Position</h1>
+    <p>Applying for: <span class="highlight-badge">{{ jobTitle }}</span></p>
+  </div>
+
+  <!-- Form Wrapper Card -->
+  <div class="form-card">
+    <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Full Name Field -->
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          formControlName="fullName" 
+          placeholder="e.g. Alex Morgan" 
+        />
+        <div class="error-msg" *ngIf="applyForm.get('fullName')?.touched && applyForm.get('fullName')?.invalid">
+          <small *ngIf="applyForm.get('fullName')?.errors?.['required']">Full name is required.</small>
+          <small *ngIf="applyForm.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters long.</small>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          placeholder="alex.morgan@company.com" 
+        />
+        <div class="error-msg" *ngIf="applyForm.get('email')?.touched && applyForm.get('email')?.invalid">
+          <small *ngIf="applyForm.get('email')?.errors?.['required']">Email address is required.</small>
+          <small *ngIf="applyForm.get('email')?.errors?.['email']">Please enter a valid email format.</small>
+        </div>
+      </div>
+
+      <!-- Grid Row for Phone & Experience -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            formControlName="phone" 
+            placeholder="+1 (555) 019-2834" 
+          />
+          <div class="error-msg" *ngIf="applyForm.get('phone')?.touched && applyForm.get('phone')?.invalid">
+            <small>Valid phone number is required.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="experienceYears">Years of Experience</label>
+          <input 
+            type="number" 
+            id="experienceYears" 
+            formControlName="experienceYears" 
+            placeholder="e.g. 5" 
+            min="0" 
+          />
+          <div class="error-msg" *ngIf="applyForm.get('experienceYears')?.touched && applyForm.get('experienceYears')?.invalid">
+            <small>Please specify your years of experience.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cover Letter Field -->
+      <div class="form-group">
+        <label for="coverLetter">Cover Letter / Statement of Intent</label>
+        <textarea 
+          id="coverLetter" 
+          formControlName="coverLetter" 
+          rows="5" 
+          placeholder="Briefly detail why you are a great fit for this role and your current accomplishments..."
+        ></textarea>
+        <div class="error-msg" *ngIf="applyForm.get('coverLetter')?.touched && applyForm.get('coverLetter')?.invalid">
+          <small *ngIf="applyForm.get('coverLetter')?.errors?.['required']">Cover letter is required.</small>
+          <small *ngIf="applyForm.get('coverLetter')?.errors?.['minlength']">Please provide at least 20 characters.</small>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" routerLink="/careers">Cancel</button>
+        <button type="submit" class="btn-primary">Submit Application</button>
+      </div>
+
+    </form>
+  </div>
+</div>
