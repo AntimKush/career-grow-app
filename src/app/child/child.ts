@@ -1,4 +1,7 @@
-import { Component, input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, input, output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeDetail } from '../models/employeedetail';
 
 @Component({
   imports: [],
@@ -7,5 +10,17 @@ import { Component, input } from '@angular/core';
   templateUrl: './child.html',
 })
 export class Child {
-  id = input<number>();
+  id!: number;
+  employeeDetails!: EmployeeDetail;
+  constructor(private route: ActivatedRoute, private httpclient: HttpClient) {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.getEmployeeDetails(this.id);
+  }
+  getEmployeeDetails(empId: number): void {
+    this.httpclient.get<EmployeeDetail>('http://localhost:5106/api/employees/' + empId)
+      .subscribe(data => {
+        this.employeeDetails = data;
+        console.log(data);
+      });
+  }
 }

@@ -5,6 +5,8 @@ import { Career } from './pages/career/career';
 import { Apply } from './pages/apply/apply';
 import { Practice } from './practice/practice';
 import { ParentPage } from './parent-page/parent-page';
+import { Child } from './child/child';
+import { UpdateEmployees } from './update-employees/update-employees';
 
 export const routes: Routes = [
     {
@@ -18,5 +20,9 @@ export const routes: Routes = [
         //     {path: '', redirectTo: 'home', pathMatch: 'full'}
         // ]
         path: '', component:ParentPage
-    }
+    },
+    {path:"employee-details/:id", component:Child},
+    {path: 'update-employee/:id', component:UpdateEmployees}
+
+
 ];

@@ -1,12 +1,37 @@
-<p>parent-page works!</p>
-<table>
-@for (emp of employees; track $index) {
-        <tr>
-            <td>{{ emp.id }}</td>
-            <td>{{ emp.name }}</td>
-            <td>{{ emp.fatherName }}</td>
-            <td>{{ emp.dob }}</td>
-            <td><app-child [id]="emp.id"></app-child></td>
-        </tr>
+<button (click)="getEmployees()" class="btn btn-success">
+    {{ 'Refresh Data' }}
+</button>
+
+@if (errorMessage) {
+    <p class="text-danger">{{ errorMessage }}</p>
 }
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Date of Birth</th>
+            <th>Action</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (emp of employees(); track $index) {
+        <tr>
+            <td>{{$index + 1}}</td>
+            <td>{{ emp.id }}</td>
+            <td class="text-success">{{ emp.name }}</td>
+            <td class="text-info">{{ emp.fatherName }}</td>
+            <td class="text-danger">{{ emp.dob }}</td>
+            <td>
+                <a routerLink="/employee-details/{{ emp.id }}" class="btn btn-success">Get Details</a>
+            </td>
+            <td>
+                <a routerLink="/update-employee/{{ emp.id }}" class="btn btn-warning">Update</a>
+        </tr>
+        }
+    </tbody>
 </table>

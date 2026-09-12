@@ -1,0 +1,19 @@
+
+<div class="container">
+  <h2>Update Employee Details</h2>
+<table class="table table-bordered">
+  <tr>
+    <td>Name:</td>
+    <td><input type="text" [(ngModel)]="employeeDetails().name" class="form-control" /></td>
+  </tr>
+  <tr>
+    <td>Father's Name:</td>
+    <td><input type="text" [(ngModel)]="employeeDetails().fatherName" class="form-control" /></td>
+  </tr>
+  <tr>
+    <td>Date of Birth:</td>
+    <td><input type="text" [(ngModel)]="employeeDetails().dob" class="form-control" /></td>
+  </tr>
+</table>
+<button (click)="updateEmployee()" class="btn btn-primary">Update</button>
+</div>

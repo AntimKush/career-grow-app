@@ -1,23 +1,39 @@
-import { Component } from '@angular/core';
-import { Child } from '../child/child';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Employee } from '../models/employee';
 
 @Component({
-  imports: [Child],
+  imports: [RouterLink],
   selector: 'app-parent-page',
   styleUrl: './parent-page.css',
   templateUrl: './parent-page.html',
 })
-export class ParentPage {
-  employees: employee[] = [
-    { id: 1, name: 'John', fatherName: 'Jane', dob: '1990-01-01' },
-    { id: 2, name: 'Alice', fatherName: 'Bob', dob: '1992-05-15' },
-    { id: 3, name: 'Charlie', fatherName: 'David', dob: '1988-12-10' },
-    { id: 4, name: 'Eve', fatherName: 'Frank', dob: '1995-08-20' },
-    { id: 5, name: 'Grace', fatherName: 'Henry', dob: '1993-03-25' },
-    { id: 6, name: 'Ivy', fatherName: 'Jack', dob: '1991-11-30' },
-    { id: 7, name: 'Kevin', fatherName: 'Liam', dob: '1989-07-12' },
-    { id: 8, name: 'Maria', fatherName: 'Noah', dob: '1994-04-18' },
-    { id: 9, name: 'Olivia', fatherName: 'Peter', dob: '1990-09-22' },
-    { id: 10, name: 'Quinn', fatherName: 'Ryan', dob: '1992-02-14' },];
+export class ParentPage implements OnInit {
+  employees = signal<Employee[]>([]);
 
+
+  loading = false;
+  errorMessage = '';
+   
+  constructor(private httpclient: HttpClient) {}
+
+  ngOnInit(): void {
+  }
+
+  getEmployees(): void {
+    this.loading = true;
+    this.errorMessage = '';
+    this.httpclient.get<Employee[]>('http://localhost:5106/api/employees/getall')
+      .subscribe({
+        next: data => {
+          this.employees.set(data);
+          this.loading = false; // Add this 
+        },
+        error: () => {
+          this.errorMessage = 'Unable to load employees.';
+          this.loading = false; // Add this
+        }
+      });
+  }
 }
