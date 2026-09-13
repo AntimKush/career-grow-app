@@ -1,7 +1,7 @@
 <button (click)="getEmployees()" class="btn btn-success">
     {{ 'Refresh Data' }}
 </button>
-
+<a routerLink="add-employee">+Add</a>
 @if (errorMessage) {
     <p class="text-danger">{{ errorMessage }}</p>
 }

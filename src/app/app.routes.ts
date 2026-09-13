@@ -7,6 +7,7 @@ import { Practice } from './practice/practice';
 import { ParentPage } from './parent-page/parent-page';
 import { Child } from './child/child';
 import { UpdateEmployees } from './update-employees/update-employees';
+import { AddEmployee } from './add-employee/add-employee';
 
 export const routes: Routes = [
     {
@@ -19,10 +20,11 @@ export const routes: Routes = [
         //     {path: 'apply', component: Apply},
         //     {path: '', redirectTo: 'home', pathMatch: 'full'}
         // ]
-        path: '', component:ParentPage
+        path: '', component: ParentPage
     },
-    {path:"employee-details/:id", component:Child},
-    {path: 'update-employee/:id', component:UpdateEmployees}
+    { path: "employee-details/:id", component: Child },
+    { path: 'update-employee/:id', component: UpdateEmployees },
+    { path: "add-employee", component: AddEmployee }
 
 
 ];

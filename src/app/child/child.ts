@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeDetail } from '../models/employeedetail';
 
@@ -11,7 +11,7 @@ import { EmployeeDetail } from '../models/employeedetail';
 })
 export class Child {
   id!: number;
-  employeeDetails!: EmployeeDetail;
+  employeeDetails = signal<EmployeeDetail | null>(null);
   constructor(private route: ActivatedRoute, private httpclient: HttpClient) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.getEmployeeDetails(this.id);
@@ -19,7 +19,7 @@ export class Child {
   getEmployeeDetails(empId: number): void {
     this.httpclient.get<EmployeeDetail>('http://localhost:5106/api/employees/' + empId)
       .subscribe(data => {
-        this.employeeDetails = data;
+        this.employeeDetails.set(data);
         console.log(data);
       });
   }

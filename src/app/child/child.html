@@ -1,22 +1,22 @@
 <table class="table table-bordered">
     <tr>
         <td>ID</td>
-        <td>{{ employeeDetails.id }}</td>
+        <td>{{ employeeDetails()?.id }}</td>
         <td>Name</td>
-        <td>{{ employeeDetails.name }}</td>
+        <td>{{ employeeDetails()?.name }}</td>
     </tr>
     <tr>
         <td>Father's Name</td>
-        <td>{{ employeeDetails.fatherName }}</td>
+        <td>{{ employeeDetails()?.fatherName }}</td>
     
         <td>Date of Birth</td>
-        <td>{{ employeeDetails.dob }}</td>
+        <td>{{ employeeDetails()?.dob }}</td>
     </tr>
     <tr>
         <td>Address</td>
-        <td>{{ employeeDetails.address }}</td>
+        <td>{{ employeeDetails()?.address }}</td>
     
         <td>Email</td>
-        <td>{{ employeeDetails.email }}</td>
+        <td>{{ employeeDetails()?.email }}</td>
     </tr>
 </table>
